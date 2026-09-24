@@ -4,21 +4,77 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "Click the post title below to read the full story.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\nCarine Ishimwe\n\n\n\n\n\nNo matching items"
+    "text": "Click the post title below to read the full story.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHow does penguin body mass differ across species?\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nCarine Ishimwe\n\n\n\n\n\n\n\n\n\n\n\n\nAre penguins with longer flippers heavier?\n\n\n\n\n\n\n\n\nSep 24, 2026\n\n\nCarine Ishimwe\n\n\n\n\n\n\n\n\n\n\n\n\nMy first weeks in MDS\n\n\n\n\n\n\n\n\nSep 12, 2026\n\n\nCarine Ishimwe\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "Carine Ishimwe",
-    "section": "Welcome",
-    "text": "Welcome\nI am Carine Ishimwe, a Master of Data Science student at the University of British Columbia with a background in Information Systems and Technology.\nMy interests include data science, machine learning, artificial intelligence, and using data and technology to generate actionable insights and address real-world challenges."
+    "section": "",
+    "text": "Master of Data Science | University of British Columbia\nI am interested in data science, machine learning, and artificial intelligence, with a focus on turning data into actionable insights and building technology that addresses real-world challenges.\nData Science · Machine Learning · AI · Analytics"
   },
   {
-    "objectID": "index.html#about-me",
-    "href": "index.html#about-me",
+    "objectID": "index.html#my-journey",
+    "href": "index.html#my-journey",
     "title": "Carine Ishimwe",
-    "section": "About Me",
-    "text": "About Me\nBefore beginning my Master of Data Science, I worked as a Global Graduate Trainee in Customer Value Management at MTN Rwandacell, where I contributed to reports and dashboards, customer engagement analysis, and data-driven business insights.\nI am also the founder of Unity Lens, an initiative exploring how artificial intelligence and virtual reality can be used for historical preservation and peace education."
+    "section": "My Journey",
+    "text": "My Journey\nI am originally from Kigali, Rwanda.\nBefore beginning my Master of Data Science, I worked as a Global Graduate Trainee in Customer Value Management at MTN Rwandacell, where I contributed to reports, dashboards, customer engagement analysis, and data-driven business insights.\nI am also the founder of Unity Lens, an initiative exploring how artificial intelligence and virtual reality can support historical preservation and peace education."
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html",
+    "href": "posts/penguin-mass-r/index.html",
+    "title": "How does penguin body mass differ across species?",
+    "section": "",
+    "text": "How does body mass differ among Adelie, Chinstrap, and Gentoo penguins? I will compare species summaries and visualize the distributions.\nData come from Palmer Penguins, collected by Kristen Gorman and Palmer Station Antarctica LTER. The data are available under the CC0 licence and included in the R package.\nPackage citation: Horst, A. M., Hill, A. P., and Gorman, K. B. (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. doi:10.5281/zenodo.3960218."
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#question-and-data",
+    "href": "posts/penguin-mass-r/index.html#question-and-data",
+    "title": "How does penguin body mass differ across species?",
+    "section": "",
+    "text": "How does body mass differ among Adelie, Chinstrap, and Gentoo penguins? I will compare species summaries and visualize the distributions.\nData come from Palmer Penguins, collected by Kristen Gorman and Palmer Station Antarctica LTER. The data are available under the CC0 licence and included in the R package.\nPackage citation: Horst, A. M., Hill, A. P., and Gorman, K. B. (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. doi:10.5281/zenodo.3960218."
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#load-and-inspect",
+    "href": "posts/penguin-mass-r/index.html#load-and-inspect",
+    "title": "How does penguin body mass differ across species?",
+    "section": "Load and inspect",
+    "text": "Load and inspect\nThe setup chunk suppresses package startup messages while keeping code visible.\n\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nInspect the number of observations, the first rows, and missing body masses.\n\npenguins_data &lt;- palmerpenguins::penguins\nnrow(penguins_data)\n\n[1] 344\n\nhead(penguins_data)\n\n  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n1  Adelie Torgersen           39.1          18.7               181        3750\n2  Adelie Torgersen           39.5          17.4               186        3800\n3  Adelie Torgersen           40.3          18.0               195        3250\n4  Adelie Torgersen             NA            NA                NA          NA\n5  Adelie Torgersen           36.7          19.3               193        3450\n6  Adelie Torgersen           39.3          20.6               190        3650\n     sex year\n1   male 2007\n2 female 2007\n3 female 2007\n4   &lt;NA&gt; 2007\n5 female 2007\n6   male 2007\n\nsum(is.na(penguins_data$body_mass_g))\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#prepare-the-data",
+    "href": "posts/penguin-mass-r/index.html#prepare-the-data",
+    "title": "How does penguin body mass differ across species?",
+    "section": "Prepare the data",
+    "text": "Prepare the data\nExclude observations missing body mass or species. Keep the original dataset unchanged.\n\nkeep &lt;- !is.na(penguins_data$body_mass_g) &\n  !is.na(penguins_data$species)\npenguins_clean &lt;- penguins_data[keep, ]\nnrow(penguins_clean)\n\n[1] 342\n\nnrow(penguins_data) - nrow(penguins_clean)\n\n[1] 2"
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#compare-species",
+    "href": "posts/penguin-mass-r/index.html#compare-species",
+    "title": "How does penguin body mass differ across species?",
+    "section": "Compare species",
+    "text": "Compare species\nCalculate the mean body mass in grams for each species. The counts show how many observations contribute to each group.\n\ntable(penguins_clean$species)\n\n\n   Adelie Chinstrap    Gentoo \n      151        68       123 \n\nmass_summary &lt;- aggregate(\n  body_mass_g ~ species,\n  data = penguins_clean,\n  FUN = mean\n)\nknitr::kable(\n  mass_summary,\n  digits = 1,\n  col.names = c(\"Species\", \"Mean body mass (g)\")\n)\n\n\n\n\nSpecies\nMean body mass (g)\n\n\n\n\nAdelie\n3700.7\n\n\nChinstrap\n3733.1\n\n\nGentoo\n5076.0"
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#visualize-the-distributions",
+    "href": "posts/penguin-mass-r/index.html#visualize-the-distributions",
+    "title": "How does penguin body mass differ across species?",
+    "section": "Visualize the distributions",
+    "text": "Visualize the distributions\nA boxplot shows the median and spread, adding information beyond the means.\n\nggplot(penguins_clean, aes(x = species, y = body_mass_g)) +\n  geom_boxplot(fill = \"steelblue\", alpha = 0.7) +\n  labs(x = \"Species\", y = \"Body mass (g)\") +\n  theme_minimal()\n\n\n\n\n\n\n\nFigure 1: Body mass distributions by penguin species, excluding missing body masses."
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#interpretation",
+    "href": "posts/penguin-mass-r/index.html#interpretation",
+    "title": "How does penguin body mass differ across species?",
+    "section": "Interpretation",
+    "text": "Interpretation\nGentoo penguins had the highest mean body mass at 5076.0 g, compared with 3700.7 g for Adelie and 3733.1 g for Chinstrap. Adelie and Chinstrap had similar means and strongly overlapping body mass distributions. Although Gentoo penguins were heavier on average, the overlapping ranges show that not every Gentoo was heavier than every penguin of the other species.\nThe analysis retained 342 penguins after excluding two observations with missing body mass. These results describe the sampled penguins and do not establish a causal effect of species on body mass."
+  },
+  {
+    "objectID": "posts/penguin-mass-r/index.html#ai-assistance-acknowledgment",
+    "href": "posts/penguin-mass-r/index.html#ai-assistance-acknowledgment",
+    "title": "How does penguin body mass differ across species?",
+    "section": "AI assistance acknowledgment",
+    "text": "AI assistance acknowledgment\nI used OpenAI ChatGPT as a Socratic tutor to develop my understanding through questions, predictions, and feedback."
   },
   {
     "objectID": "posts/first-weeks/index.html",
@@ -26,6 +82,69 @@
     "title": "My first weeks in MDS",
     "section": "",
     "text": "Growing up, one of my biggest dreams was to study at a top university and experience life in Canada. Through hard work, dedication, and the different steps in my academic and professional journey, that dream eventually brought me to Vancouver to pursue the Master of Data Science program at the University of British Columbia. I arrived on August 2, 2026, which gave me some time to enjoy the summer and explore places such as Stanley Park, the Vancouver Art Gallery, Kitsilano Beach, and the UBC campus. I have enjoyed how peaceful Vancouver feels, although I quickly discovered that it can also be quite expensive!\n\n\n\nExploring Vancouver before beginning my MDS journey at UBC.\n\n\nOur MDS orientation began on August 26, and it marked the real beginning of this new chapter. I had already heard that the ten-month program would be intense, but orientation gave me the opportunity to meet my classmates and begin building connections. Although making new friends does not always come easily to me, I enjoy socializing, networking, and helping others, so it was encouraging to meet people at my table and get to know them. Once classes began, I realized that having previous exposure to Python, R, and statistics was helpful, but I would still need a great deal of practice to understand the material deeply and keep up with the pace of the program.\nAfter the first two weeks, I can definitely say that MDS is challenging. There are quizzes to prepare for, labs to complete, concepts to review, and new material arriving constantly. I am learning not only data science, but also how to manage my time, work more efficiently, and ask for support when I need it. I naturally like to take time to analyze problems carefully, so adapting to the speed of the program is something I am actively working on. Some days end with me exhausted and needing a short nap before returning to work, but I keep reminding myself that I worked hard to reach this point and that growth takes persistence. I hope that as the program continues, I will become more comfortable with the pace while continuing to learn, improve, and enjoy this opportunity."
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html",
+    "href": "posts/penguin-flippers-python/index.html",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "",
+    "text": "I explore the relationship between flipper length and body mass, using species colours to distinguish groups.\nData come from Palmer Penguins, collected by Kristen Gorman and Palmer Station Antarctica LTER. The data have a CC0 licence and are included in the Python package.\nDataset package reference: Horst, A. M., Hill, A. P., and Gorman, K. B. (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. doi:10.5281/zenodo.3960218."
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#question-and-data",
+    "href": "posts/penguin-flippers-python/index.html#question-and-data",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "",
+    "text": "I explore the relationship between flipper length and body mass, using species colours to distinguish groups.\nData come from Palmer Penguins, collected by Kristen Gorman and Palmer Station Antarctica LTER. The data have a CC0 licence and are included in the Python package.\nDataset package reference: Horst, A. M., Hill, A. P., and Gorman, K. B. (2020). palmerpenguins: Palmer Archipelago (Antarctica) penguin data. doi:10.5281/zenodo.3960218."
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#setup",
+    "href": "posts/penguin-flippers-python/index.html#setup",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "Setup",
+    "text": "Setup\nThe setup chunk hides routine imports to keep attention on the analysis. Analysis code and results remain visible.\nConfirm which Python executable is running this document.\n\nprint(sys.executable)\n\n/Users/carineishimwe/Documents/521/carine-ishimwe2025.github.io/.venv/bin/python3"
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#load-and-inspect",
+    "href": "posts/penguin-flippers-python/index.html#load-and-inspect",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "Load and inspect",
+    "text": "Load and inspect\nCheck the dataset size and missing values in the variables used.\n\npenguins = load_penguins()\nprint(\"Original rows:\", len(penguins))\nprint(penguins[[\"species\", \"flipper_length_mm\", \"body_mass_g\"]].isna().sum())\npenguins.head()\n\nOriginal rows: 344\nspecies              0\nflipper_length_mm    2\nbody_mass_g          2\ndtype: int64\n\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nmale\n2007\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nfemale\n2007\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nfemale\n2007\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n2007\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nfemale\n2007"
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#prepare-the-data",
+    "href": "posts/penguin-flippers-python/index.html#prepare-the-data",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "Prepare the data",
+    "text": "Prepare the data\nRemove rows missing a variable needed for the analysis. Keep the original dataset unchanged.\n\nclean = penguins.dropna(\n    subset=[\"species\", \"flipper_length_mm\", \"body_mass_g\"]\n).copy()\nprint(\"Rows retained:\", len(clean))\nprint(\"Rows excluded:\", len(penguins) - len(clean))\n\nRows retained: 342\nRows excluded: 2"
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#summarize-the-relationship",
+    "href": "posts/penguin-flippers-python/index.html#summarize-the-relationship",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "Summarize the relationship",
+    "text": "Summarize the relationship\nPearson correlation describes the direction and strength of a linear relationship. Compare the pooled correlation with correlations within each species, because species differences may affect the pooled result.\n\noverall_correlation = clean[\"flipper_length_mm\"].corr(clean[\"body_mass_g\"])\nprint(f\"Overall Pearson correlation: {overall_correlation:.3f}\")\n\nfor species, group in clean.groupby(\"species\"):\n    correlation = group[\"flipper_length_mm\"].corr(group[\"body_mass_g\"])\n    print(f\"{species}: n={len(group)}, correlation={correlation:.3f}\")\n\nOverall Pearson correlation: 0.871\nAdelie: n=151, correlation=0.468\nChinstrap: n=68, correlation=0.642\nGentoo: n=123, correlation=0.703"
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#visualize-the-relationship",
+    "href": "posts/penguin-flippers-python/index.html#visualize-the-relationship",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "Visualize the relationship",
+    "text": "Visualize the relationship\nEach point represents one penguin. Colour distinguishes species.\n\nfig, ax = plt.subplots(figsize=(7, 5))\n\nfor species, group in clean.groupby(\"species\"):\n    ax.scatter(\n        group[\"flipper_length_mm\"],\n        group[\"body_mass_g\"],\n        label=species,\n        alpha=0.65\n    )\n\nax.set_xlabel(\"Flipper length (mm)\")\nax.set_ylabel(\"Body mass (g)\")\nax.legend(title=\"Species\")\nax.grid(alpha=0.2)\nfig.tight_layout()\nplt.show()\n\n\n\n\n\n\n\nFigure 1: Flipper length and body mass of penguins, coloured by species; observations with missing required values are excluded."
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#interpretation",
+    "href": "posts/penguin-flippers-python/index.html#interpretation",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "Interpretation",
+    "text": "Interpretation\nAmong the 342 penguins with complete measurements, longer flippers were associated with greater body mass. The overall Pearson correlation was 0.871. Within species, correlations were positive but smaller: 0.468 for Adelie, 0.642 for Chinstrap, and 0.703 for Gentoo.\nThe scatterplot shows Gentoo penguins generally clustered at longer flipper lengths and greater body masses. The stronger pooled correlation reflects both differences between species and variation within species. These observational results do not establish that longer flippers cause greater body mass. Two observations were excluded because of missing measurements."
+  },
+  {
+    "objectID": "posts/penguin-flippers-python/index.html#ai-assistance-acknowledgment",
+    "href": "posts/penguin-flippers-python/index.html#ai-assistance-acknowledgment",
+    "title": "Are penguins with longer flippers heavier?",
+    "section": "AI assistance acknowledgment",
+    "text": "AI assistance acknowledgment\nI used OpenAI ChatGPT as a Socratic tutor to develop my understanding through questions, predictions, and feedback."
   },
   {
     "objectID": "about.html",
@@ -54,19 +173,5 @@
     "title": "About",
     "section": "Projects and Interests",
     "text": "Projects and Interests\nI am the founder of Unity Lens, an initiative that explores how artificial intelligence and virtual reality can be used to preserve Rwanda’s history and support peace education.\nI am interested in building technology and AI projects that address meaningful real-world challenges while combining data, storytelling, and social impact."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Carine Ishimwe",
-    "section": "",
-    "text": "Master of Data Science | University of British Columbia\nI am interested in data science, machine learning, and artificial intelligence, with a focus on turning data into actionable insights and building technology that addresses real-world challenges.\nData Science · Machine Learning · AI · Analytics"
-  },
-  {
-    "objectID": "index.html#my-journey",
-    "href": "index.html#my-journey",
-    "title": "Carine Ishimwe",
-    "section": "My Journey",
-    "text": "My Journey\nBefore beginning my Master of Data Science, I worked as a Global Graduate Trainee in Customer Value Management at MTN Rwandacell, where I contributed to reports, dashboards, customer engagement analysis, and data-driven business insights.\nI am also the founder of Unity Lens, an initiative exploring how artificial intelligence and virtual reality can support historical preservation and peace education."
   }
 ]
