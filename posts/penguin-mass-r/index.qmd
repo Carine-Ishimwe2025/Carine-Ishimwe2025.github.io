@@ -1,0 +1,109 @@
+---
+title: "How does penguin body mass differ across species?"
+author: "Carine Ishimwe"
+date: "2026-09-24"
+categories: [R, data-analysis, penguins]
+execute:
+  echo: true
+---
+
+## Question and data
+
+How does body mass differ among Adelie, Chinstrap, and Gentoo penguins?
+I will compare species summaries and visualize the distributions.
+
+Data come from [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/),
+collected by Kristen Gorman and Palmer Station Antarctica LTER.
+The data are available under the CC0 licence and included in the R package.
+
+Package citation: Horst, A. M., Hill, A. P., and Gorman, K. B. (2020).
+*palmerpenguins: Palmer Archipelago (Antarctica) penguin data.*
+[doi:10.5281/zenodo.3960218](https://doi.org/10.5281/zenodo.3960218).
+
+## Load and inspect
+
+The setup chunk suppresses package startup messages while keeping code visible.
+
+```{r}
+#| label: setup
+#| message: false
+library(palmerpenguins)
+library(ggplot2)
+```
+
+Inspect the number of observations, the first rows, and missing body masses.
+
+```{r}
+#| label: inspect-data
+penguins_data <- palmerpenguins::penguins
+nrow(penguins_data)
+head(penguins_data)
+sum(is.na(penguins_data$body_mass_g))
+```
+
+## Prepare the data
+
+Exclude observations missing body mass or species.
+Keep the original dataset unchanged.
+
+```{r}
+#| label: clean-data
+keep <- !is.na(penguins_data$body_mass_g) &
+  !is.na(penguins_data$species)
+penguins_clean <- penguins_data[keep, ]
+nrow(penguins_clean)
+nrow(penguins_data) - nrow(penguins_clean)
+```
+
+## Compare species
+
+Calculate the mean body mass in grams for each species.
+The counts show how many observations contribute to each group.
+
+```{r}
+#| label: summarize-mass
+table(penguins_clean$species)
+mass_summary <- aggregate(
+  body_mass_g ~ species,
+  data = penguins_clean,
+  FUN = mean
+)
+knitr::kable(
+  mass_summary,
+  digits = 1,
+  col.names = c("Species", "Mean body mass (g)")
+)
+```
+
+## Visualize the distributions
+
+A boxplot shows the median and spread, adding information beyond the means.
+
+```{r}
+#| label: fig-mass-by-species
+#| fig-cap: "Body mass distributions by penguin species, excluding missing body masses."
+ggplot(penguins_clean, aes(x = species, y = body_mass_g)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7) +
+  labs(x = "Species", y = "Body mass (g)") +
+  theme_minimal()
+```
+
+## Interpretation
+
+Gentoo penguins had the highest mean body mass at 5076.0 g,
+compared with 3700.7 g for Adelie and 3733.1 g for Chinstrap.
+Adelie and Chinstrap had similar means and strongly overlapping
+body mass distributions.
+Although Gentoo penguins were heavier on average, the overlapping
+ranges show that not every Gentoo was heavier than every penguin
+of the other species.
+
+The analysis retained 342 penguins after excluding two observations
+with missing body mass.
+These results describe the sampled penguins and do not establish
+a causal effect of species on body mass.
+
+## AI assistance acknowledgment
+
+I used OpenAI ChatGPT as a Socratic tutor to develop my understanding 
+through questions, predictions, and feedback.
