@@ -1,0 +1,131 @@
+---
+title: "Are penguins with longer flippers heavier?"
+author: "Carine Ishimwe"
+date: "2026-09-24"
+categories: [Python, data-analysis, penguins]
+jupyter: python3
+execute:
+  echo: true
+---
+
+## Question and data
+
+I explore the relationship between flipper length and body mass,
+using species colours to distinguish groups.
+
+Data come from [Palmer Penguins](https://allisonhorst.github.io/palmerpenguins/),
+collected by Kristen Gorman and Palmer Station Antarctica LTER.
+The data have a CC0 licence and are included in the Python package.
+
+Dataset package reference: Horst, A. M., Hill, A. P., and Gorman, K. B.
+(2020). *palmerpenguins: Palmer Archipelago (Antarctica) penguin data.*
+[doi:10.5281/zenodo.3960218](https://doi.org/10.5281/zenodo.3960218).
+
+## Setup
+
+The setup chunk hides routine imports to keep attention on the analysis.
+Analysis code and results remain visible.
+
+```{python}
+#| label: setup
+#| echo: false
+import sys
+import matplotlib.pyplot as plt
+from palmerpenguins import load_penguins
+```
+
+Confirm which Python executable is running this document.
+
+```{python}
+#| label: check-environment
+print(sys.executable)
+```
+
+## Load and inspect
+
+Check the dataset size and missing values in the variables used.
+
+```{python}
+#| label: inspect-data
+penguins = load_penguins()
+print("Original rows:", len(penguins))
+print(penguins[["species", "flipper_length_mm", "body_mass_g"]].isna().sum())
+penguins.head()
+```
+
+## Prepare the data
+
+Remove rows missing a variable needed for the analysis.
+Keep the original dataset unchanged.
+
+```{python}
+#| label: clean-data
+clean = penguins.dropna(
+    subset=["species", "flipper_length_mm", "body_mass_g"]
+).copy()
+print("Rows retained:", len(clean))
+print("Rows excluded:", len(penguins) - len(clean))
+```
+
+## Summarize the relationship
+
+Pearson correlation describes the direction and strength of a linear
+relationship. Compare the pooled correlation with correlations within
+each species, because species differences may affect the pooled result.
+
+```{python}
+#| label: summarize-relationship
+overall_correlation = clean["flipper_length_mm"].corr(clean["body_mass_g"])
+print(f"Overall Pearson correlation: {overall_correlation:.3f}")
+
+for species, group in clean.groupby("species"):
+    correlation = group["flipper_length_mm"].corr(group["body_mass_g"])
+    print(f"{species}: n={len(group)}, correlation={correlation:.3f}")
+```
+
+## Visualize the relationship
+
+Each point represents one penguin.
+Colour distinguishes species.
+
+```{python}
+#| label: fig-flipper-mass
+#| fig-cap: "Flipper length and body mass of penguins, coloured by species; observations with missing required values are excluded."
+fig, ax = plt.subplots(figsize=(7, 5))
+
+for species, group in clean.groupby("species"):
+    ax.scatter(
+        group["flipper_length_mm"],
+        group["body_mass_g"],
+        label=species,
+        alpha=0.65
+    )
+
+ax.set_xlabel("Flipper length (mm)")
+ax.set_ylabel("Body mass (g)")
+ax.legend(title="Species")
+ax.grid(alpha=0.2)
+fig.tight_layout()
+plt.show()
+```
+
+## Interpretation
+
+Among the 342 penguins with complete measurements, longer flippers
+were associated with greater body mass.
+The overall Pearson correlation was 0.871.
+Within species, correlations were positive but smaller:
+0.468 for Adelie, 0.642 for Chinstrap, and 0.703 for Gentoo.
+
+The scatterplot shows Gentoo penguins generally clustered at longer
+flipper lengths and greater body masses.
+The stronger pooled correlation reflects both differences between
+species and variation within species.
+These observational results do not establish that longer flippers
+cause greater body mass.
+Two observations were excluded because of missing measurements.
+
+## AI assistance acknowledgment
+
+I used OpenAI ChatGPT as a Socratic tutor to develop my understanding
+through questions, predictions, and feedback.
