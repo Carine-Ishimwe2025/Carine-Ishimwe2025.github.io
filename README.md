@@ -22,7 +22,7 @@ Run these commands in a terminal.
 Choose a location where a folder named `milestone3-site` does not already exist.
 
 ```bash
-git clone https://github.com/Carine-Ishimwe2025/carine-ishimwe2025.github.io.git milestone3-site
+git clone https://github.com/Carine-Ishimwe2025/Carine-Ishimwe2025.github.io.git milestone3-site
 cd milestone3-site
 uv sync --locked
 Rscript -e 'renv::restore(prompt = FALSE)'
