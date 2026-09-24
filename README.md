@@ -1,4 +1,3 @@
-# carine-ishimwe2025.github.io
 # Carine Ishimwe's website
 
 This repository contains my personal Quarto website and DSCI 521 posts.

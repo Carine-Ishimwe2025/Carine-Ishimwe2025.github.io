@@ -21,6 +21,8 @@ I am interested in data science, machine learning, and artificial intelligence, 
 
 ## My Journey
 
+I am originally from Kigali, Rwanda.
+
 Before beginning my Master of Data Science, I worked as a Global Graduate Trainee in Customer Value Management at MTN Rwandacell, where I contributed to reports, dashboards, customer engagement analysis, and data-driven business insights.
 
 I am also the founder of Unity Lens, an initiative exploring how artificial intelligence and virtual reality can support historical preservation and peace education.
