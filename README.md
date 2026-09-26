@@ -71,9 +71,3 @@ GitHub Pages serves the rendered files in `docs/`.
 After editing, render from the repository root and commit the updated
 source files and rendered website.
 Keep `docs/.nojekyll` in the repository.
-
-## AI assistance
-
-I used OpenAI ChatGPT as a Socratic tutor through questions,
-predictions, explanations, and feedback.
-Each computational post also acknowledges AI assistance.

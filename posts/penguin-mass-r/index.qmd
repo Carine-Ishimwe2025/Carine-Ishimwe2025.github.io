@@ -102,8 +102,3 @@ The analysis retained 342 penguins after excluding two observations
 with missing body mass.
 These results describe the sampled penguins and do not establish
 a causal effect of species on body mass.
-
-## AI assistance acknowledgment
-
-I used OpenAI ChatGPT as a Socratic tutor to develop my understanding 
-through questions, predictions, and feedback.

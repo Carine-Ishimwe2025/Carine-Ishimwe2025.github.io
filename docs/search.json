@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Carine Ishimwe",
     "section": "",
-    "text": "Master of Data Science | University of British Columbia\nI am interested in data science, machine learning, and artificial intelligence, with a focus on turning data into actionable insights and building technology that addresses real-world challenges.\nData Science · Machine Learning · AI · Analytics"
+    "text": "Master of Data Science | University of British Columbia\nI am interested in data science, machine learning, and artificial intelligence, with a focus on turning data into actionable insights and building technology that addresses real-world challenges.\nData Science · Machine Learning · AI · Analytics\nConnect with me on LinkedIn"
   },
   {
     "objectID": "index.html#my-journey",
@@ -68,13 +68,6 @@
     "title": "How does penguin body mass differ across species?",
     "section": "Interpretation",
     "text": "Interpretation\nGentoo penguins had the highest mean body mass at 5076.0 g, compared with 3700.7 g for Adelie and 3733.1 g for Chinstrap. Adelie and Chinstrap had similar means and strongly overlapping body mass distributions. Although Gentoo penguins were heavier on average, the overlapping ranges show that not every Gentoo was heavier than every penguin of the other species.\nThe analysis retained 342 penguins after excluding two observations with missing body mass. These results describe the sampled penguins and do not establish a causal effect of species on body mass."
-  },
-  {
-    "objectID": "posts/penguin-mass-r/index.html#ai-assistance-acknowledgment",
-    "href": "posts/penguin-mass-r/index.html#ai-assistance-acknowledgment",
-    "title": "How does penguin body mass differ across species?",
-    "section": "AI assistance acknowledgment",
-    "text": "AI assistance acknowledgment\nI used OpenAI ChatGPT as a Socratic tutor to develop my understanding through questions, predictions, and feedback."
   },
   {
     "objectID": "posts/first-weeks/index.html",
@@ -138,13 +131,6 @@
     "title": "Are penguins with longer flippers heavier?",
     "section": "Interpretation",
     "text": "Interpretation\nAmong the 342 penguins with complete measurements, longer flippers were associated with greater body mass. The overall Pearson correlation was 0.871. Within species, correlations were positive but smaller: 0.468 for Adelie, 0.642 for Chinstrap, and 0.703 for Gentoo.\nThe scatterplot shows Gentoo penguins generally clustered at longer flipper lengths and greater body masses. The stronger pooled correlation reflects both differences between species and variation within species. These observational results do not establish that longer flippers cause greater body mass. Two observations were excluded because of missing measurements."
-  },
-  {
-    "objectID": "posts/penguin-flippers-python/index.html#ai-assistance-acknowledgment",
-    "href": "posts/penguin-flippers-python/index.html#ai-assistance-acknowledgment",
-    "title": "Are penguins with longer flippers heavier?",
-    "section": "AI assistance acknowledgment",
-    "text": "AI assistance acknowledgment\nI used OpenAI ChatGPT as a Socratic tutor to develop my understanding through questions, predictions, and feedback."
   },
   {
     "objectID": "about.html",

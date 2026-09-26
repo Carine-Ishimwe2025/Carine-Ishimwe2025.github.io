@@ -124,8 +124,3 @@ species and variation within species.
 These observational results do not establish that longer flippers
 cause greater body mass.
 Two observations were excluded because of missing measurements.
-
-## AI assistance acknowledgment
-
-I used OpenAI ChatGPT as a Socratic tutor to develop my understanding
-through questions, predictions, and feedback.
